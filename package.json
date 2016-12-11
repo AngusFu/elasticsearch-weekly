@@ -1,0 +1,27 @@
+{
+  "name": "node-elastic",
+  "version": "1.0.0",
+  "description": "75team weekly elastic search",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "elastic",
+    "search"
+  ],
+  "author": "angusfu1126@qq.com",
+  "license": "MIT",
+  "dependencies": {
+    "elasticsearch": "^12.1.0",
+    "shelljs": "^0.7.5"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0"
+  }
+}
