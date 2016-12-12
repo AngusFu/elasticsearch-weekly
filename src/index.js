@@ -37,14 +37,21 @@ const pingPromise = function () {
 const start = async function () {
   try {
     await pingPromise();
-    startHTTPServer({ esclient, search });
   } catch (e) {
     console.error(e);
     // retry
     setTimeout(function () {
       start();
     }, 3000);
+
+    return;
   };
+
+  // if ping ok
+  // start our server
+  priocess.nextTick(function () {
+    startHTTPServer({ esclient, search });
+  });
 };
 
 // if elastic cluster is not running
