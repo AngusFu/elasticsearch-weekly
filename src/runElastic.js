@@ -8,16 +8,19 @@ const path = require('path');
 const execFile = require('child_process').execFile;
 
 const { ES_ROOT } = require('../config.json');
-const elastic = execFile(path.resolve(__dirname, `../${ES_ROOT}/bin/elasticsearch`));
 
-elastic.stdout.on('data', (data) => {
-  console.log(data);
-});
+module.exports = function () {
+  const elastic = execFile(path.resolve(__dirname, `../${ES_ROOT}/bin/elasticsearch`));
 
-elastic.stderr.on('data', (data) => {
-  console.error(data);
-});
+  elastic.stdout.on('data', (data) => {
+    console.log(data);
+  });
 
-elastic.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});
+  elastic.stderr.on('data', (data) => {
+    console.error(data);
+  });
+
+  elastic.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
+};

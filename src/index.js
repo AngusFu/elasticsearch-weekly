@@ -10,10 +10,10 @@
 
 'use strict';
 
-const checkElastic = require('./checkElastic');
 const { esclient, search } = require('./esclient');
 const startHTTPServer = require('./server');
 
+/*
 // ping to check if elastic is ready
 const pingPromise = function () {
   return new Promise(function (resolve, reject) {
@@ -58,8 +58,9 @@ const start = async function () {
 
 // if elastic cluster is not running
 // start it
+// const checkElastic = require('./checkElastic')；
 if (!checkElastic()) {
-  require('./runElastic');
+  require('./runElastic')();
   console.log('elastic starts...');
 
   // delay 10s 
@@ -67,3 +68,9 @@ if (!checkElastic()) {
 } else {
   start();
 }
+*/
+
+// run elastic
+require('./runElastic')();
+// start server
+startHTTPServer({ esclient, search });

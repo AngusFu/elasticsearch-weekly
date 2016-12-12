@@ -11,7 +11,7 @@ const express = require('express');
 const wechatMiddle = require('wechat');
 
 /*
-// for test
+// for test use this
 const wechatMiddle = function (config, handler) {
   return function (req, res, next) {
     req.weixin = {
@@ -171,7 +171,4 @@ module.exports = function startServer({
 
   http.createServer(app).listen(PORT);
   console.log(`server listening on port ${PORT}`);
-
-  // jdbc index
-  runJDBC();
 };

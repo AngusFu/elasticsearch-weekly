@@ -1,12 +1,16 @@
 
-const { DB_NAME } = require('../config.json');
+const {
+  DB_NAME,
+  DB_USER,
+  DB_PWD
+} = require('../config.json');
 
 module.exports = {
   "type": "jdbc",
   "jdbc": {
-    "url": "jdbc:mysql://localhost:3306/weekly_75team_com?autoReconnect=true&useSSL=false",
-    "user": "root",
-    "password": "",
+    "url": `jdbc:mysql://localhost:3306/${DB_NAME}?autoReconnect=true&useSSL=false`,
+    "user": DB_USER,
+    "password":DB_PWD,
     "sql": "select *, aid as _id from article where status=1",
     "index": DB_NAME,
     "type": "article",

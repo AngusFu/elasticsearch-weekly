@@ -1,12 +1,17 @@
 {
   "ES_ROOT": "elasticsearch-2.3.4",
   "JDBC_ROOT": "elasticsearch-jdbc-2.3.4.0",
-  "DB_NAME": "weekly_75team_com",
+
+  "DB_NAME": "weekly",
+  "DB_USER": "root",
+  "DB_PWD": "yyzl",
+
   "WeChat": {
     "token": "75weekly",
     "appid": "",
     "encodingAESKey": ""
   },
+  
   "Messages": {
     "default": "感谢你关注奇舞周刊公众号，我们每周五将向大家推送周刊。如果你想阅读以前周刊内容，可直接输入数字查看，如输入：145。",
     "error": "抱歉暂时没有搜索到您想要的内容。如果你想阅读以前周刊内容，可直接输入数字查看，如输入：145。"

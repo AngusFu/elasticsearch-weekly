@@ -5,7 +5,7 @@
 
 'use strict';
 require('shelljs/global');
-const checkElastic = require('./checkElastic');
+// const checkElastic = require('./checkElastic');
 
 const path = require('path')
 const { JDBC_ROOT } = require('../config.json');
@@ -14,13 +14,14 @@ const BIN = path.resolve(__dirname, `../${JDBC_ROOT}/bin`);
 const CONFIG = require('./jdbc');
 
 let isRunning = false;
-let MAX_RETRYING = 20;
+// let MAX_RETRYING = 20;
 
 module.exports = function runJDBC() {
-  if (MAX_RETRYING <= 0) {
-    return;
-  }
+  // if (MAX_RETRYING <= 0) {
+  //   return;
+  // }
 
+  /* 
   // if elastic cluster is not running
   // it is useless running JDBC
   // throw a error
@@ -33,7 +34,7 @@ module.exports = function runJDBC() {
       runJDBC();
       MAX_RETRYING--;
     }, 20*1000);
-  }
+  }*/
 
   // just once at the same time
   if (isRunning) {

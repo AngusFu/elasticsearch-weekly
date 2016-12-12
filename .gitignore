@@ -10,3 +10,4 @@ logs/
 zip/
 elasticsearch*/
 npm-debug.log
+lib/
