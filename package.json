@@ -7,7 +7,8 @@
     "compile": "babel src/ --out-dir lib/",
     "watch-compile": "npm run compile -- --watch",
     "watch": "npm run watch-compile",
-    "start": "npm run compile && pm2 start pm2.json"
+    "pm2": "pm2 start pm2.json",
+    "start": "npm run pm2"
   },
   "keywords": [
     "elastic",
@@ -19,6 +20,7 @@
     "babel-runtime": "^6.20.0",
     "elasticsearch": "^12.1.0",
     "express": "^4.14.0",
+    "npm-run-all": "^3.1.2",
     "shelljs": "^0.7.5",
     "wechat": "^2.0.3"
   },
