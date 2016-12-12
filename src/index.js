@@ -49,7 +49,9 @@ const start = async function () {
 
   // if ping ok
   // start our server
-  process.nextTick(function () {
+  console.log('Ping elastic DONE!');
+
+  setTimeout(function () {
     startHTTPServer({ esclient, search });
   });
 };

@@ -14,15 +14,25 @@ const BIN = path.resolve(__dirname, `../${JDBC_ROOT}/bin`);
 const CONFIG = require('./jdbc');
 
 let isRunning = false;
+let MAX_RETRYING = 20;
 
-module.exports = function runJBDC() {
+module.exports = function runJDBC() {
+  if (MAX_RETRYING <= 0) {
+    return;
+  }
+
   // if elastic cluster is not running
   // it is useless running JDBC
   // throw a error
   if (!checkElastic()) {
     let msg = 'no elastic cluster is running!!';
     console.error(msg);
-    throw { msg };
+    
+    setTimeout(function () {
+      console.log('JDBC retrying...')
+      runJDBC();
+      MAX_RETRYING--;
+    }, 20*1000);
   }
 
   // just once at the same time

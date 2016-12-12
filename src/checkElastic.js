@@ -8,6 +8,7 @@ require('shelljs/global');
 
 // check any elasticsearch process running
 module.exports = function checkElastic() {
-  let elasticInfo = exec('ps -af', { silent: true }).grep('elasticsearch');
+  let elasticInfo = exec('ps -af', { silent: true }).grep('elasticsearch-');
+  console.log('' + elasticInfo);
   return !!elasticInfo.trim();
 };
