@@ -15,7 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "elasticsearch": "^12.1.0",
-    "shelljs": "^0.7.5"
+    "express": "^4.14.0",
+    "shelljs": "^0.7.5",
+    "wechat": "^2.0.3"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.16.0",
