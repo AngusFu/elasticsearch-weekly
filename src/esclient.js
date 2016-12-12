@@ -4,6 +4,7 @@
  */
 
 'use strict';
+const { DB_NAME } = require('../config.json');
 const elasticsearch = require('elasticsearch');
 
 // create es client
@@ -17,7 +18,7 @@ exports.esclient = esclient;
 // @see http://es.xiaoleilu.com/110_Multi_Field_Search/20_Tuning_best_field_queries.html
 exports.search = async function (word) {
   let res = await esclient.search({
-    index: 'weekly',
+    index: DB_NAME,
     type: "article",
     size: 100,
     body: {

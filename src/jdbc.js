@@ -1,11 +1,14 @@
+
+const { DB_NAME } = require('../config.json');
+
 module.exports = {
   "type": "jdbc",
   "jdbc": {
     "url": "jdbc:mysql://localhost:3306/weekly_75team_com?autoReconnect=true&useSSL=false",
     "user": "root",
-    "password": "yyzl",
+    "password": "",
     "sql": "select *, aid as _id from article where status=1",
-    "index": "weekly_75team_com",
+    "index": DB_NAME,
     "type": "article",
     "index_settings": {
       "analysis": {
@@ -60,4 +63,5 @@ module.exports = {
       "port": "9300"
     }
   }
-}
+};
+

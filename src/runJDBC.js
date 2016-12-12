@@ -16,9 +16,10 @@ if (!checkElastic()) {
   throw { msg };
 }
 
-const path = require('path');
-const LIB = path.resolve(__dirname, '../elasticsearch-jdbc-2.3.4.0/lib');
-const BIN = path.resolve(__dirname, '../elasticsearch-jdbc-2.3.4.0/bin');
+const path = require('path')
+const { JDBC_ROOT } = require('../config.json');
+const LIB = path.resolve(__dirname, `../${JDBC_ROOT}/lib`);
+const BIN = path.resolve(__dirname, `../${JDBC_ROOT}/bin`);
 const CONFIG = require('./jdbc');
 
 let child = echo(JSON.stringify(CONFIG)).exec(`

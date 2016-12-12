@@ -7,7 +7,8 @@
 const path = require('path');
 const execFile = require('child_process').execFile;
 
-const elastic = execFile(path.resolve(__dirname, '../elasticsearch-2.3.4/bin/elasticsearch'));
+const { ES_ROOT } = require('../config.json');
+const elastic = execFile(path.resolve(__dirname, `../${ES_ROOT}/bin/elasticsearch`));
 
 elastic.stdout.on('data', (data) => {
   console.log(data);
