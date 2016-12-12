@@ -1,11 +1,11 @@
 module.exports = {
   "type": "jdbc",
   "jdbc": {
-    "url": "jdbc:mysql://localhost:3306/weekly?autoReconnect=true&useSSL=false",
+    "url": "jdbc:mysql://localhost:3306/weekly_75team_com?autoReconnect=true&useSSL=false",
     "user": "root",
     "password": "yyzl",
     "sql": "select *, aid as _id from article where status=1",
-    "index": "weekly",
+    "index": "weekly_75team_com",
     "type": "article",
     "index_settings": {
       "analysis": {

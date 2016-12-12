@@ -15,7 +15,7 @@ const parseQuery = (objURL) => querystring.parse(objURL.query);
 const getReqQuery = (req) => parseQuery(parseUrl(req.url));
 
 // server port
-const PORT = 1234;
+const PORT = process.env.PORT || 1234;
 
 module.exports = function startServer({ esclient, search }) {
 
