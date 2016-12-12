@@ -28,7 +28,7 @@ module.exports = function startServer({ esclient, search }) {
   /**
    * search API
    */
-  app.use('/search', function (req, res) {
+  app.use('/search', async (req, res) => {
     // CORS
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, X-Requested-With");
@@ -62,7 +62,7 @@ module.exports = function startServer({ esclient, search }) {
    *   MsgId: '6264690455703743275'
    * }
    **/
-  app.use('/wechat', wechat(config.wechat, (req, res) => {
+  app.use('/wechat', wechat(config.wechat, async (req, res) => {
 
     let { MsgType, Content } = req['weixin'];
 
