@@ -1,0 +1,6 @@
+{
+  "ES_ROOT": "elasticsearch-2.3.4",
+  "JDBC_ROOT": "elasticsearch-jdbc-2.3.4.0",
+  "DB_NAME": "weekly_75team_com"
+}
+

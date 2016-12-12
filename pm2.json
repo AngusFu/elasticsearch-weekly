@@ -1,0 +1,9 @@
+{
+    "name": "elasticsearch-weekly",
+    "script": "index.js",
+    "watch": ["src", "index.js"],
+    "ignore_watch": ["elasticsearch*", "README.md"],
+    "env": {
+        "PORT": 23333
+    }
+}
