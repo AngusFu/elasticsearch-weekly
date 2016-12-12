@@ -7,15 +7,6 @@
 require('shelljs/global');
 const checkElastic = require('./checkElastic');
 
-// if elastic cluster is not running
-// it is useless running JDBC
-// throw a error
-if (!checkElastic()) {
-  let msg = 'no elastic cluster is running!!';
-  console.error(msg);
-  throw { msg };
-}
-
 const path = require('path')
 const { JDBC_ROOT } = require('../config.json');
 const LIB = path.resolve(__dirname, `../${JDBC_ROOT}/lib`);
@@ -25,6 +16,16 @@ const CONFIG = require('./jdbc');
 let isRunning = false;
 
 module.exports = function runJBDC() {
+  // if elastic cluster is not running
+  // it is useless running JDBC
+  // throw a error
+  if (!checkElastic()) {
+    let msg = 'no elastic cluster is running!!';
+    console.error(msg);
+    throw { msg };
+  }
+
+  // just once at the same time
   if (isRunning) {
     return;
   }
@@ -46,6 +47,7 @@ module.exports = function runJBDC() {
 
   child.on('close', (code) => {
     isRunning = false;
+    console.log('JDBC DONE!!!');
     console.log(`child process exited with code ${code}`);
   });
 };

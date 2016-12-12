@@ -171,4 +171,7 @@ module.exports = function startServer({
 
   http.createServer(app).listen(PORT);
   console.log(`server listening on port ${PORT}`);
+
+  // jdbc index
+  runJDBC();
 };
