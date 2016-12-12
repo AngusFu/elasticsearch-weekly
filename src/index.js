@@ -49,7 +49,7 @@ const start = async function () {
 
   // if ping ok
   // start our server
-  priocess.nextTick(function () {
+  process.nextTick(function () {
     startHTTPServer({ esclient, search });
   });
 };
