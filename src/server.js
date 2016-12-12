@@ -7,12 +7,11 @@
 const URL = require('url');
 const querystring = require('querystring');
 const http = require('http');
-const express = require('express');
-const wechatMiddle = require('wechat');
 
-/*
-// for test use this
-const wechatMiddle = function (config, handler) {
+const express = require('express');
+const wechat  = require('wechat');
+
+const wechatMiddle = process.env.ENV !== 'development' ? wechat : function (config, handler) {
   return function (req, res, next) {
     req.weixin = {
       ToUserName: 'gh_208a8ec77969',
@@ -29,7 +28,6 @@ const wechatMiddle = function (config, handler) {
     handler(req, res, next);
   };
 };
-*/
 
 // elastic-jdbc indexing
 const runJDBC = require('./runJDBC');
@@ -43,29 +41,29 @@ const getReqQuery = (req) => parseQuery(parseUrl(req.url));
 
 // server port
 const PORT = process.env.PORT || 1234;
+
 // config
 const {
   Messages,
   WeChat
 } = require('../config.json');
 
-// random color
-const colors = ["f44336", "e91e63", "9c27b0", "673ab7", "3f51b5", "2196f3", "03a9f4", "00bcd4", "009688", "4caf50", "8bc34a", "cddc39", "ffeb3b", "ffc107", "ff9800", "ff5722", "795548", "9e9e9e", "607d8b"];
-/**
- * get random color
- */
-const randColor = () => colors[~~(Math.random() * colors.length)];
-
-/**
- * get heading image
- */
-const getImage = (query) => `http://placeholdit.imgix.net/~text?txtsize=50&txt=${encodeURIComponent(query)}&w=450&h=250&bg=${randColor()}&txtclr=ffffff`;
-
 module.exports = function startServer({
   esclient,
   search
 }) {
+
+  // random color
+  const colors = ["f44336", "e91e63", "9c27b0", "673ab7", "3f51b5", "2196f3", "03a9f4", "00bcd4", "009688", "4caf50", "8bc34a", "cddc39", "ffeb3b", "ffc107", "ff9800", "ff5722", "795548", "9e9e9e", "607d8b"];
+
+  // get random color
+  const randColor = () => colors[~~(Math.random() * colors.length)];
+
+  // get heading image url
+  const getImage = (query) => `http://placeholdit.imgix.net/~text?txtsize=50&txt=${encodeURIComponent(query)}&w=450&h=250&bg=${randColor()}&txtclr=ffffff`;
+
   const app = express();
+
   app.use(express.query());
 
   /**
@@ -79,7 +77,9 @@ module.exports = function startServer({
 
     let query = getReqQuery(req);
     let word = query['q'] || '';
-
+    
+    console.log(word);
+    
     try {
       let result = await search({
         word,
@@ -109,6 +109,8 @@ module.exports = function startServer({
       MsgType,
       Content
     } = req['weixin'];
+
+    console.log(Content);
 
     // if not text message
     if (MsgType !== 'text') {

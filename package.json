@@ -7,7 +7,7 @@
     "compile": "babel src/ --out-dir lib/",
     "watch-compile": "npm run compile -- --watch",
     "watch": "npm run watch-compile",
-    "start": "pm2 start pm2.json"
+    "start": "npm run compile && pm2 start pm2.json"
   },
   "keywords": [
     "elastic",
