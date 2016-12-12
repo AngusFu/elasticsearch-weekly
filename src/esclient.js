@@ -16,37 +16,36 @@ exports.esclient = esclient;
 
 // search function
 // @see http://es.xiaoleilu.com/110_Multi_Field_Search/20_Tuning_best_field_queries.html
-exports.search = async function (word) {
+exports.search = async function ({ word = '', size = 50, from = 0 }) {
   let res = await esclient.search({
     index: DB_NAME,
     type: "article",
-    size: 100,
     body: {
+      from,
+      size,
       query: {
-        dis_max: {
-          queries: [
-            {
-              match: {
-                title: word
-              }
-            },
-            {
-              match: {
-                description: word
-              }
-            },
-            {
-              match: {
-                tags: word
-              }
+        bool :{
+          should: [{
+            match: { title: query }
+          }, {
+            bool: {
+              should: [{
+                match: {
+                  description: query
+                }
+              }, {
+                match: {
+                  tags: query
+                }
+              }]
             }
-          ],
-          tie_breaker: 0.3
+          }]   
         }
       },
       highlight: {
         pre_tags: ['<em>'],
         post_tags: ['</em>'],
+        require_field_match: true,
         fields: {
           title: {},
           description: {},
