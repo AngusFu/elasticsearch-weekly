@@ -26,16 +26,16 @@ exports.search = async function ({ word = '', size = 50, from = 0 }) {
       query: {
         bool :{
           should: [{
-            match: { title: query }
+            match: { title: word }
           }, {
             bool: {
               should: [{
                 match: {
-                  description: query
+                  description: word
                 }
               }, {
                 match: {
-                  tags: query
+                  tags: word
                 }
               }]
             }

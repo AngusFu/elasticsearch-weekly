@@ -39,6 +39,7 @@ const start = async function () {
     await pingPromise();
     startHTTPServer({ esclient, search });
   } catch (e) {
+    console.error(e);
     // retry
     setTimeout(function () {
       start();

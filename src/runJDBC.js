@@ -22,18 +22,30 @@ const LIB = path.resolve(__dirname, `../${JDBC_ROOT}/lib`);
 const BIN = path.resolve(__dirname, `../${JDBC_ROOT}/bin`);
 const CONFIG = require('./jdbc');
 
-let child = echo(JSON.stringify(CONFIG)).exec(`
-  java -cp "${LIB}/*" -Dlog4j.configurationFile=${BIN}/log4j2.xml org.xbib.tools.Runner org.xbib.tools.JDBCImporter
-`, { async: true });
+let isRunning = false;
 
-child.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
-});
+module.exports = function runJBDC() {
+  if (isRunning) {
+    return;
+  }
 
-child.stderr.on('data', (data) => {
-  console.log(`stderr: ${data}`);
-});
+  let child = echo(JSON.stringify(CONFIG)).exec(`
+    java -cp "${LIB}/*" -Dlog4j.configurationFile=${BIN}/log4j2.xml org.xbib.tools.Runner org.xbib.tools.JDBCImporter
+  `, { async: true });
 
-child.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});
+  isRunning = true;
+  
+  child.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+  });
+
+  child.stderr.on('data', (data) => {
+    isRunning = false;
+    console.log(`stderr: ${data}`);
+  });
+
+  child.on('close', (code) => {
+    isRunning = false;
+    console.log(`child process exited with code ${code}`);
+  });
+};
