@@ -26,7 +26,7 @@ module.exports = function runJDBC() {
   `, { async: true });
 
   isRunning = true;
-  
+
   child.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
   });
@@ -38,7 +38,11 @@ module.exports = function runJDBC() {
 
   child.on('close', (code) => {
     isRunning = false;
-    console.log('JDBC DONE!!!');
+    if (code === 0) {
+      console.log('JDBC DONE!!!');
+    } else {
+      console.error('Something WRONG when JDBC indexing.....');
+    }
     console.log(`child process exited with code ${code}`);
   });
 };
