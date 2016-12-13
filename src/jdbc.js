@@ -1,3 +1,9 @@
+/**
+ * @authhor  angusfu1126@qq.com
+ * @date     2016-12-10
+ */
+
+'use strict';
 
 const {
   DB_NAME,
@@ -68,4 +74,3 @@ module.exports = {
     }
   }
 };
-
