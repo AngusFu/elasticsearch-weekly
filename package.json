@@ -7,6 +7,8 @@
     "compile": "babel src/ --out-dir lib/",
     "watch-compile": "npm run compile -- --watch",
     "watch": "npm run watch-compile",
+    "elastic": "./elasticsearch-2.3.4/bin/elasticsearch",
+    "jdbc": "node ./lib/dbIndex",
     "pm2": "pm2 start pm2.json",
     "start": "npm run pm2"
   },
@@ -17,20 +19,15 @@
   "author": "angusfu1126@qq.com",
   "license": "MIT",
   "dependencies": {
-    "babel-runtime": "^6.20.0",
     "elasticsearch": "^12.1.0",
     "express": "^4.14.0",
-    "npm-run-all": "^3.1.2",
     "shelljs": "^0.7.5",
     "wechat": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-core": "^6.20.0",
-    "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.18.0",
-    "babel-preset-es2015-loose": "^8.0.0",
     "babel-preset-stage-1": "^6.16.0"
   }
 }

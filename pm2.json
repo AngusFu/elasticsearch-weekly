@@ -1,7 +1,7 @@
 {
-    "name": "elasticsearch-weekly",
-    "script": "index.js",
-    "watch": ["lib", "index.js"],
+    "name": "weekly-search",
+    "script": "./lib/index.js",
+    "watch": ["lib/", "config.json"],
     "ignore_watch": ["elasticsearch*", "README.md"],
     "env": {
         "PORT": 23333,
