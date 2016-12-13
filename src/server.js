@@ -77,9 +77,9 @@ module.exports = function startServer({
 
     let query = getReqQuery(req);
     let word = query['q'] || '';
-    
+
     console.log(word);
-    
+
     try {
       let result = await search({
         word,
@@ -164,7 +164,7 @@ module.exports = function startServer({
   // do JDBC indexing
   app.use('/jdbcindexing', (req, res) => {
     runJDBC();
-    res.end('indexings');
+    res.end('start running JDBC indexing...please wait....');
   });
 
   app.use('/', (req, res) => {
